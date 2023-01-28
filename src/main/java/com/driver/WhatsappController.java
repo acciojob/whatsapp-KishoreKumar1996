@@ -23,12 +23,14 @@ public class WhatsappController {
     WhatsappService whatsappService = new WhatsappService();
 
     @PostMapping("/add-user")
-    public String createUser( String name, String mobile) throws Exception {
+    public String createUser(String name, String mobile) throws Exception {
         //If the mobile number exists in database, throw "User already exists" exception
         //Otherwise, create the user and return "SUCCESS"
+
         if(!whatsappService.newUser(mobile)) {
             throw new Exception("User already exists");
         }
+
         return whatsappService.createUser(name, mobile);
     }
 
@@ -47,15 +49,15 @@ public class WhatsappController {
     }
 
     @PostMapping("/add-message")
-    public int createMessage(@RequestBody() String content){
+    public int createMessage(String content){
         // The 'i^th' created message has message id 'i'.
         // Return the message id.
 
-        return  whatsappService.createMessage(content);
+        return whatsappService.createMessage(content);
     }
 
     @PutMapping("/send-message")
-    public int sendMessage( Message message, User sender, Group group) throws Exception{
+    public int sendMessage(Message message, User sender, Group group) throws Exception{
         //Throw "Group does not exist" if the mentioned group does not exist
         //Throw "You are not allowed to send message" if the sender is not a member of the group
         //If the message is sent successfully, return the final number of messages in that group.
@@ -63,7 +65,7 @@ public class WhatsappController {
         return whatsappService.sendMessage(message, sender, group);
     }
     @PutMapping("/change-admin")
-    public String changeAdmin(User approver, User user,Group group) throws Exception{
+    public String changeAdmin(User approver, User user, Group group) throws Exception{
         //Throw "Group does not exist" if the mentioned group does not exist
         //Throw "Approver does not have rights" if the approver is not the current admin of the group
         //Throw "User is not a participant" if the user is not a part of the group

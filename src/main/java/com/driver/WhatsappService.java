@@ -6,8 +6,7 @@ import java.util.List;
 @Service
 public class WhatsappService {
 
-    WhatsappRepository whatsappRepository=new WhatsappRepository();
-
+    WhatsappRepository whatsappRepository = new WhatsappRepository() ;
     public boolean newUser(String mobile) {
         return whatsappRepository.newUser(mobile);
     }
@@ -16,19 +15,20 @@ public class WhatsappService {
         whatsappRepository.createUser(name, mobile);
         return "SUCCESS";
     }
-    public Group createGroup( List<User> users){
-        return whatsappRepository. createGroup(users);
+
+    public Group createGroup(List<User> users) {
+        return whatsappRepository.createGroup(users);
     }
 
-    public int createMessage(String content){
+    public int createMessage(String content) {
         return whatsappRepository.createMessage(content);
     }
 
-    public int sendMessage(Message message, User sender, Group group) throws Exception{
-        return whatsappRepository.sendMessage(message,sender,group);
+    public int sendMessage(Message message, User sender, Group group) throws Exception {
+        return whatsappRepository.sendMessage(message, sender, group);
     }
 
-    public String changeAdmin(User approver, User user, Group group) throws Exception{
-        return whatsappRepository.changeAdmin(approver,user,group);
+    public String changeAdmin(User approver, User user, Group group) throws Exception {
+        return whatsappRepository.changeAdmin(approver, user, group);
     }
 }
