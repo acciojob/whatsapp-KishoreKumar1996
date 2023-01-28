@@ -13,7 +13,7 @@ public class WhatsappRepository {
     private HashMap<Group, List<Message>> groupMessageMap;
     private HashMap<Message, User> senderMap;
     private HashMap<Group, User> adminMap;
-    private Map<String,User> userMobile;
+    private HashMap<String,User> userMobile;
     private int customGroupCount;
     private int messageId;
 
